@@ -6,7 +6,7 @@ using UnityEngine;
 public class ControllerManager : MonoBehaviour
 {
     //get all controllers and assign indices
-    //assign controller to player
+    //assign controller
 
     private List<Controller> controllers; //Can this be a queue?
 
@@ -37,6 +37,7 @@ public class ControllerManager : MonoBehaviour
     private void AssignController(Controller controller)
     {
         controller.IsAssigned = true;
-        Debug.Log("Assigned Controller: " + controller.gameObject.name);
+        Debug.Log("Assigned Controller: " + controller.gameObject.name); //*remove
+        FindObjectOfType<PlayerManager>().AddPlayerToGame(controller); //turn into singleton
     }
 }
