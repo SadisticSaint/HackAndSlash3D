@@ -127,6 +127,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 833681169}
     m_Modifications:
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1295279516069972757, guid: f522372869e6e0f4c850d10232f225f5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -232,6 +252,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 833681169}
     m_Modifications:
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -173
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1295279516069972757, guid: f522372869e6e0f4c850d10232f225f5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -428,6 +488,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 833681169}
     m_Modifications:
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -173
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1295279516069972757, guid: f522372869e6e0f4c850d10232f225f5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -958,6 +1043,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 833681169}
     m_Modifications:
+    - target: {fileID: 1295279516069972747, guid: f522372869e6e0f4c850d10232f225f5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1295279516143547161, guid: f522372869e6e0f4c850d10232f225f5,
         type: 3}
       propertyPath: m_Name

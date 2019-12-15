@@ -13,6 +13,7 @@ public class UIPlayerText : MonoBehaviour
 
     internal void HandlePlayerInitialized()
     {
+        //*anchor player joined text
         tmText.text = "Player Joined";
         StartCoroutine(ClearTextAfterDelay());
     }
