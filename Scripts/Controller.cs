@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
@@ -16,19 +15,27 @@ public class Controller : MonoBehaviour
     /// </summary>
 
     public int Index { get; private set; }
+    public bool IsAssigned { get; set; }
 
-    private string attackButton;
     [SerializeField] //testing
     private bool attack;
-
-    private void Start()
-    {
-        Index = 1;
-        attackButton = "Attack" + Index;
-    }
+    private string attackButton;
 
     private void Update()
     {
-        attack = Input.GetButton(attackButton);
+        if(!string.IsNullOrEmpty(attackButton)) //fix for - ArgumentException: Input button _ is not set up
+            attack = Input.GetButton(attackButton);
+    }
+
+    internal void SetIndex(int index)
+    {
+        Index = index;
+        attackButton = "Attack" + Index;
+        gameObject.name = "Controller " + Index;
+    }
+
+    internal bool AnyButtonDown()
+    {
+        return attack; //as more buttons are added, this needs to be modified
     }
 }
