@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] //* delete after testing
     private bool attack;
+
     public bool attackPressed; //*make private after testing
     private string attackButton;
     private string horizontalAxis;
@@ -44,5 +45,10 @@ public class Controller : MonoBehaviour
     internal bool AnyButtonDown()
     {
         return attack; //*as more buttons are added, this needs to be modified
+    }
+
+    internal Vector3 GetDirection()
+    {
+        return new Vector3(horizontal, 0, vertical);
     }
 }
