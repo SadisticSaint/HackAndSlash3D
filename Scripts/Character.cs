@@ -6,6 +6,12 @@ public class Character : MonoBehaviour
     private float moveSpeed = 5f;
 
     private Controller controller;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
@@ -15,6 +21,12 @@ public class Character : MonoBehaviour
         {
             transform.position += direction * Time.deltaTime * moveSpeed;
             transform.forward = direction * 360; //*stop character from trying to correct its rotation
+
+            animator.SetFloat("Speed", direction.magnitude);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0);
         }
     }
 
