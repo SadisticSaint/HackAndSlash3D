@@ -37,7 +37,6 @@ public class ControllerManager : MonoBehaviour
     private void AssignController(Controller controller)
     {
         controller.IsAssigned = true;
-        Debug.Log("Assigned Controller: " + controller.gameObject.name); //*remove
         FindObjectOfType<PlayerManager>().AddPlayerToGame(controller); //turn into singleton
     }
 }

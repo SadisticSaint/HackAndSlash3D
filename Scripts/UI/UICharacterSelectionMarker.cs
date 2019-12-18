@@ -36,13 +36,23 @@ public class UICharacterSelectionMarker : MonoBehaviour
         if (!initialized)
             return;
 
-        if (player.Controller.horizontal > 0.1 && !IsLockedIn)
-            MoveToCharacterPanel(menu.RightPanel);
-        else if (player.Controller.horizontal < -0.1 && !IsLockedIn)
-            MoveToCharacterPanel(menu.LeftPanel);
+        if (!IsLockedIn)
+        {
+            if (player.Controller.horizontal > 0.1)
+                MoveToCharacterPanel(menu.RightPanel);
+            else if (player.Controller.horizontal < -0.1)
+                MoveToCharacterPanel(menu.LeftPanel);
 
-        if (player.Controller.attackPressed)
-            LockCharacter();
+            if (player.Controller.attackPressed)
+                LockCharacter();
+        }
+        else
+        {
+            if (player.Controller.attackPressed)
+            {
+                menu.TryToStartGame();
+            }
+        }
     }
 
     private void LockCharacter()
