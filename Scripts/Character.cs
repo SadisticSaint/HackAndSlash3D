@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
         if (direction.magnitude > 0.1) //make dead zone menu setting
         {
             transform.position += direction * Time.deltaTime * moveSpeed;
-            transform.forward = direction * 360;
+            transform.forward = direction * 360; //*stop character from trying to correct its rotation
         }
     }
 
