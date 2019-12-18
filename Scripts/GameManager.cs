@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         while (operation.isDone == false)
-        {
             yield return null;
-        }
+
+        PlayerManager.Instance.SpawnPlayerCharacters();
     }
 }

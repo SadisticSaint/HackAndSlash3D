@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public bool HasController { get { return Controller != null; } }
     public int PlayerNumber { get { return playerNumber; } }
 
+    public Character CharacterPrefab { get; set; }
+
     private void Awake()
     {
         uiPlayerText = GetComponentInChildren<UIPlayerText>(); 
@@ -23,5 +25,11 @@ public class Player : MonoBehaviour
         gameObject.name = string.Format("Player {0} - {1}", playerNumber, controller.gameObject.name);
         uiPlayerText.HandlePlayerInitialized();
         //*add sound effect when joining game
+    }
+
+    public void SpawnCharacter()
+    {
+        var character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
+        character.SetController(Controller);
     }
 }
