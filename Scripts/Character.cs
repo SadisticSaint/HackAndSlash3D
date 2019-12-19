@@ -4,13 +4,19 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 5f;
+    [SerializeField]
+    private float attackOffset = 1f;
+    [SerializeField]
+    private float attackRadius = 1f;
 
     private Controller controller;
     private Animator animator;
+    private Collider[] attackResults;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        attackResults = new Collider[10];
     }
 
     private void Update()
@@ -29,9 +35,24 @@ public class Character : MonoBehaviour
             animator.SetFloat("Speed", 0);
         }
 
-        if(controller.attackPressed)
+        if (controller.attackPressed)
         {
-            animator.SetTrigger("Attack"); //make character stop moving when attacking or create a new attack while moving animation
+            Attack();
+
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attack"); //make character stop moving when attacking or create a new attack while moving animation
+        Vector3 position = transform.position + transform.forward * attackOffset;
+        int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            var box = attackResults[i].GetComponent<Box>();
+            if (box != null)
+                box.TakeDamage(this);
         }
     }
 
