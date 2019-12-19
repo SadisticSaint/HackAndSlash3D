@@ -56,9 +56,9 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++)
         {
-            var box = attackResults[i].GetComponent<Box>();
-            if (box != null)
-                box.TakeDamage(this);
+            var takeDamage = attackResults[i].GetComponent<ITakeDamage>();
+            if (takeDamage != null)
+                takeDamage.TakeDamage(this);
         }
     }
 

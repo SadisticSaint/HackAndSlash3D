@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : MonoBehaviour, ITakeDamage
 {
     [SerializeField]
     private float forceAmount = 10f;
