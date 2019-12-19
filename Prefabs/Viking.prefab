@@ -52,6 +52,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7055237116035141109}
     m_Modifications:
+    - target: {fileID: -7048396149819206206, guid: 9cf8cc639cec5e949b6938400cb4cafb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5daf88eb4a07a8a4e8d748f873d4a7f2, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 9cf8cc639cec5e949b6938400cb4cafb,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: ad4a5606926ee254eb948b72cab1fb23,
+        type: 2}
     - target: {fileID: -4216859302048453862, guid: 9cf8cc639cec5e949b6938400cb4cafb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,6 +123,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: viking_animated_sword
       objectReference: {fileID: 0}
+    - target: {fileID: 3429811357432160086, guid: 9cf8cc639cec5e949b6938400cb4cafb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e308fbf287c58e74b857c54699bfe4e4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf8cc639cec5e949b6938400cb4cafb, type: 3}
 --- !u!4 &102256296663436866 stripped
