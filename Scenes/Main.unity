@@ -1073,7 +1073,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.7e-44, z: 7.184e-42, w: -1.6459895e+37}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1775,6 +1775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 169236875527901692, guid: fc2e8833e0360e5418211b44af8d19a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4447167002536631420, guid: fc2e8833e0360e5418211b44af8d19a9,
         type: 3}
