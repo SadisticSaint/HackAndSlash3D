@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
 
         if(controller.attackPressed)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack"); //make character stop moving when attacking or create a new attack while moving animation
         }
     }
 
