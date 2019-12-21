@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -17,6 +19,12 @@ public class EnemySpawner : MonoBehaviour
     private int numberToSpawnEachTime = 1;
 
     private float spawnTimer;
+    private int totalNumberSpawned;
+
+    private void OnEnable()
+    {
+        spawnTimer = respawnRate - initialSpawnDelay;
+    }
 
     private void Update()
     {
@@ -27,6 +35,9 @@ public class EnemySpawner : MonoBehaviour
 
     private bool ShouldSpawn()
     {
+        if (totalNumberSpawned >= totalNumberToSpawn && totalNumberToSpawn > 0)
+            return false;
+
         return spawnTimer >= respawnRate;
     }
 
@@ -34,24 +45,36 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnTimer = 0f;
 
-        Enemy prefab = ChooseRandomEnemyPrefab();
+        var availableSpawnPoints = spawnPoints.ToList();
 
-        if(prefab != null)
+        for (int i = 0; i < numberToSpawnEachTime; i++)
         {
-            Transform spawnPoint = ChooseRandomSpawnPoint();
-            var enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+            if (totalNumberSpawned >= totalNumberToSpawn && totalNumberToSpawn > 0)
+                break;
+
+            Enemy prefab = ChooseRandomEnemyPrefab();
+
+            if (prefab != null)
+            {
+                Transform spawnPoint = ChooseRandomSpawnPoint(availableSpawnPoints); //if an enemy is there, also remove from list
+                if (availableSpawnPoints.Contains(spawnPoint))
+                    availableSpawnPoints.Remove(spawnPoint);
+
+                var enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+                totalNumberSpawned++;
+            }
         }
     }
 
-    private Transform ChooseRandomSpawnPoint()
+    private Transform ChooseRandomSpawnPoint(List<Transform> availableSpawnPoints)
     {
-        if (spawnPoints.Length == 0)
+        if (availableSpawnPoints.Count == 0)
             return transform;
-        if (spawnPoints.Length == 1)
-            return spawnPoints[0];
+        if (availableSpawnPoints.Count == 1)
+            return availableSpawnPoints[0];
 
-        int index = UnityEngine.Random.Range(0, spawnPoints.Length);
-        return spawnPoints[index];
+        int index = UnityEngine.Random.Range(0, availableSpawnPoints.Count);
+        return availableSpawnPoints[index];
     }
 
     private Enemy ChooseRandomEnemyPrefab()
