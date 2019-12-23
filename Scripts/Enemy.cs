@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, ITakeDamage
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private Character target;
+    private bool IsDead { get { return currentHealth <= 0; } }
 
     private void Awake()
     {
@@ -28,15 +29,31 @@ public class Enemy : MonoBehaviour, ITakeDamage
 
     private void Update()
     {
-        if(target == null)
+        if (IsDead)
+            return;
+
+        if (target == null)
         {
             target = Character.All
                 .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
                 .FirstOrDefault();
+            animator.SetFloat("Speed", 0f);
         }
         else
         {
-            navMeshAgent.SetDestination(target.transform.position);
+            var distance = Vector3.Distance(transform.position, target.transform.position);
+            if (distance > 2)
+            {
+                animator.SetFloat("Speed", 1f);
+                navMeshAgent.isStopped = false;
+                navMeshAgent.SetDestination(target.transform.position);
+            }
+            else
+            {
+                animator.SetFloat("Speed", 0f);
+                navMeshAgent.isStopped = true;
+                //Attack
+            }
         }
     }
 
@@ -54,6 +71,7 @@ public class Enemy : MonoBehaviour, ITakeDamage
     private void Die()
     {
         animator.SetTrigger("Die");
+        navMeshAgent.isStopped = true;
         Destroy(gameObject, 2f);
     }
 }
