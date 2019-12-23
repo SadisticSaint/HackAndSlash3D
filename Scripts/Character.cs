@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -15,6 +16,8 @@ public class Character : MonoBehaviour
     private Animator animator;
     private Collider[] attackResults;
 
+    public static List<Character> All = new List<Character>();
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -22,6 +25,17 @@ public class Character : MonoBehaviour
 
         var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
         animationImpactWatcher.OnImpact += AnimationImpactWatcher_OnImpact;
+    }
+    private void OnEnable()
+    {
+        if (All.Contains(this) == false)
+            All.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        if (All.Contains(this))
+            All.Remove(this);
     }
 
     private void Update()
