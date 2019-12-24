@@ -50,11 +50,16 @@ public class Enemy : MonoBehaviour, ITakeDamage
             }
             else
             {
-                animator.SetFloat("Speed", 0f);
-                navMeshAgent.isStopped = true;
-                //Attack
+                Attack();
             }
         }
+    }
+
+    private void Attack()
+    {
+        animator.SetFloat("Speed", 0f);
+        navMeshAgent.isStopped = true;
+        animator.SetTrigger("Attack");
     }
 
     public void TakeDamage(Character hitBy)
