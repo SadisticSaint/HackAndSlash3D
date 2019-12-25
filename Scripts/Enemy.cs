@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Attacker))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour, ITakeDamage
 {
     //would it be better to make a singleton? would i be able to automatically attach this script to any enemy prefab running different instances of the script?
@@ -13,13 +15,17 @@ public class Enemy : MonoBehaviour, ITakeDamage
     private int currentHealth;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private Attacker attacker;
     private Character target;
+
     private bool IsDead { get { return currentHealth <= 0; } }
+
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        attacker = GetComponent<Attacker>();
     }
 
     private void OnEnable()
@@ -34,35 +40,50 @@ public class Enemy : MonoBehaviour, ITakeDamage
 
         if (target == null)
         {
-            target = Character.All
-                .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
-                .FirstOrDefault();
-            animator.SetFloat("Speed", 0f);
+            AcquireTarget();
         }
         else
         {
             var distance = Vector3.Distance(transform.position, target.transform.position);
             if (distance > 2)
             {
-                animator.SetFloat("Speed", 1f);
-                navMeshAgent.isStopped = false;
-                navMeshAgent.SetDestination(target.transform.position);
+                FollowTarget();
             }
             else
             {
-                Attack();
+                TryToAttack();
             }
         }
     }
 
-    private void Attack()
+    private void AcquireTarget()
+    {
+        target = Character.All
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))
+            .FirstOrDefault();
+        animator.SetFloat("Speed", 0f);
+    }
+
+    private void FollowTarget()
+    {
+        animator.SetFloat("Speed", 1f);
+        navMeshAgent.isStopped = false;
+        navMeshAgent.SetDestination(target.transform.position);
+    }
+
+    private void TryToAttack()
     {
         animator.SetFloat("Speed", 0f);
         navMeshAgent.isStopped = true;
-        animator.SetTrigger("Attack");
+
+        if (attacker.CanAttack)
+        {
+            animator.SetTrigger("Attack");
+            attacker.Attack(target);
+        }
     }
 
-    public void TakeDamage(Character hitBy)
+    public void TakeDamage(IAttack hitBy)
     {
         currentHealth--;
         Instantiate(impactParticle, new Vector3(0, 2, 0), Quaternion.identity);

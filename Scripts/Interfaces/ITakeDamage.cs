@@ -1,4 +1,4 @@
 ﻿public interface ITakeDamage
 {
-    void TakeDamage(Character hitBy);
+    void TakeDamage(IAttack hitBy);
 }

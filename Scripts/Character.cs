@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, ITakeDamage, IAttack
 {
     [SerializeField]
     private float moveSpeed = 5f;
@@ -11,10 +11,17 @@ public class Character : MonoBehaviour
     private float attackOffset = 1f;
     [SerializeField]
     private float attackRadius = 1f;
+    [SerializeField]
+    private int damage = 1;
+    [SerializeField]
+    private int maxHealth = 10;
 
     private Controller controller;
     private Animator animator;
     private Collider[] attackResults;
+    private int currentHealth;
+
+    public int Damage { get { return damage; } }
 
     public static List<Character> All = new List<Character>();
 
@@ -30,6 +37,8 @@ public class Character : MonoBehaviour
     {
         if (All.Contains(this) == false)
             All.Add(this);
+
+        currentHealth = maxHealth;
     }
 
     private void OnDisable()
@@ -79,5 +88,10 @@ public class Character : MonoBehaviour
     internal void SetController(Controller controller)
     {
         this.controller = controller;
+    }
+
+    public void TakeDamage(IAttack hitBy)
+    {
+        currentHealth -= hitBy.Damage; //characters shouldn't be able to damage each other
     }
 }
