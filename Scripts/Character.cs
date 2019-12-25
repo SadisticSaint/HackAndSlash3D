@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, ITakeDamage, IAttack
+[RequireComponent(typeof(Attacker))]
+public class Character : MonoBehaviour, ITakeDamage
 {
     [SerializeField]
     private float moveSpeed = 5f;
-    [SerializeField]
-    private float attackOffset = 1f;
-    [SerializeField]
-    private float attackRadius = 1f;
     [SerializeField]
     private int damage = 1;
     [SerializeField]
@@ -18,7 +15,7 @@ public class Character : MonoBehaviour, ITakeDamage, IAttack
 
     private Controller controller;
     private Animator animator;
-    private Collider[] attackResults;
+    private Attacker attacker;
     private int currentHealth;
 
     public int Damage { get { return damage; } }
@@ -28,10 +25,7 @@ public class Character : MonoBehaviour, ITakeDamage, IAttack
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        attackResults = new Collider[10];
-
-        var animationImpactWatcher = GetComponentInChildren<AnimationImpactWatcher>();
-        animationImpactWatcher.OnImpact += AnimationImpactWatcher_OnImpact;
+        attacker = GetComponent<Attacker>();
     }
     private void OnEnable()
     {
@@ -65,23 +59,11 @@ public class Character : MonoBehaviour, ITakeDamage, IAttack
 
         if (controller.attackPressed)
         {
-            animator.SetTrigger("Attack"); //make character stop moving when attacking or create a new attack while moving animation
-        }
-    }
+            if (attacker.CanAttack)
+            {
+                animator.SetTrigger("Attack"); //make character stop moving when attacking or create a new attack while moving animation
 
-    /// <summary>
-    /// Called by animation event via AnimationImpactWatcher
-    /// </summary>
-    private void AnimationImpactWatcher_OnImpact()
-    {
-        Vector3 position = transform.position + transform.forward * attackOffset;
-        int hitCount = Physics.OverlapSphereNonAlloc(position, attackRadius, attackResults);
-
-        for (int i = 0; i < hitCount; i++)
-        {
-            var takeDamage = attackResults[i].GetComponent<ITakeDamage>();
-            if (takeDamage != null)
-                takeDamage.TakeDamage(this);
+            }
         }
     }
 
