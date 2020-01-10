@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Attacker))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : MonoBehaviour, ITakeDamage
+public class Enemy : PooledMonoBehaviour, ITakeDamage
 {
     //would it be better to make a singleton? would i be able to automatically attach this script to any enemy prefab running different instances of the script?
     [SerializeField]
