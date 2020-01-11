@@ -8,7 +8,7 @@ public class Enemy : PooledMonoBehaviour, ITakeDamage
 {
     //would it be better to make a singleton? would i be able to automatically attach this script to any enemy prefab running different instances of the script?
     [SerializeField]
-    private GameObject impactParticle;
+    private PooledMonoBehaviour impactParticle;
     [SerializeField]
     private int maxHealth = 3;
 
@@ -86,20 +86,22 @@ public class Enemy : PooledMonoBehaviour, ITakeDamage
     public void TakeDamage(IAttack hitBy)
     {
         currentHealth--;
+        //*stop impact particles after death
+        //refine how many particles should exist at once in particle prefab
+        impactParticle.Get<PooledMonoBehaviour>(transform.position + new Vector3(0, 2, 0), Quaternion.identity);
 
         if (IsDead)
             Die();
         else
         {
-            Instantiate(impactParticle, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
             animator.SetTrigger("Hit");
         }
     }
 
     private void Die()
     {
-        animator.SetTrigger("Die");
         navMeshAgent.isStopped = true;
+        animator.SetTrigger("Die");
 
         ReturnToPool(6f);
     }

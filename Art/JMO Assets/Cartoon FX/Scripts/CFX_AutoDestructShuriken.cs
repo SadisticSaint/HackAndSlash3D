@@ -8,7 +8,7 @@ using System.Collections;
 // (only deactivates the object if the OnlyDeactivate flag is set, automatically used with CFX Spawn System)
 
 [RequireComponent(typeof(ParticleSystem))]
-public class CFX_AutoDestructShuriken : MonoBehaviour
+public class CFX_AutoDestructShuriken : PooledMonoBehaviour
 {
 	// If true, deactivate the object instead of destroying it
 	public bool OnlyDeactivate;
@@ -32,7 +32,7 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 					#if UNITY_3_5
 						this.gameObject.SetActiveRecursively(false);
 					#else
-						this.gameObject.SetActive(false);
+                        ReturnToPool(0.5f);
 					#endif
 				}
 				else

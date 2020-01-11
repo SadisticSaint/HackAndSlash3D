@@ -78,7 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e474b1f2723f46b1e7223bf6fdc2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactParticle: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  initialPoolSize: 50
+  impactParticle: {fileID: 11400002, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
   maxHealth: 3
 --- !u!195 &7356510858960123551
 NavMeshAgent:
@@ -115,6 +116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  attackOffset: 1
+  attackRadius: 1
 --- !u!1001 &2719539195438887364
 PrefabInstance:
   m_ObjectHideFlags: 0
