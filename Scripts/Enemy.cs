@@ -86,18 +86,21 @@ public class Enemy : PooledMonoBehaviour, ITakeDamage
     public void TakeDamage(IAttack hitBy)
     {
         currentHealth--;
-        Instantiate(impactParticle, new Vector3(0, 2, 0), Quaternion.identity);
 
-        if (currentHealth <= 0)
+        if (IsDead)
             Die();
         else
+        {
+            Instantiate(impactParticle, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
             animator.SetTrigger("Hit");
+        }
     }
 
     private void Die()
     {
         animator.SetTrigger("Die");
         navMeshAgent.isStopped = true;
-        Destroy(gameObject, 2f);
+
+        ReturnToPool(6f);
     }
 }
