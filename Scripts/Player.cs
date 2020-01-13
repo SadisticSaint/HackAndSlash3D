@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class Player : MonoBehaviour
     private int playerNumber;
 
     private UIPlayerText uiPlayerText;
+
+    public event Action<Character> OnCharacterChanged = delegate { }; //why use empty delegate? 19C 2:30
 
     public Controller Controller { get; private set; }
     public bool HasController { get { return Controller != null; } }
@@ -31,5 +34,6 @@ public class Player : MonoBehaviour
     {
         var character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         character.SetController(Controller);
+        OnCharacterChanged(character);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Attacker))]
 public class Character : MonoBehaviour, ITakeDamage
 {
+    public static List<Character> All = new List<Character>();
+
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
@@ -18,9 +19,9 @@ public class Character : MonoBehaviour, ITakeDamage
     private Attacker attacker;
     private int currentHealth;
 
-    public int Damage { get { return damage; } }
+    public event Action<int, int> OnHealthChanged = delegate { };
 
-    public static List<Character> All = new List<Character>();
+    public int Damage { get { return damage; } }
 
     private void Awake()
     {
@@ -75,5 +76,6 @@ public class Character : MonoBehaviour, ITakeDamage
     public void TakeDamage(IAttack hitBy)
     {
         currentHealth -= hitBy.Damage; //characters shouldn't be able to damage each other
+        OnHealthChanged(currentHealth, maxHealth);
     }
 }
