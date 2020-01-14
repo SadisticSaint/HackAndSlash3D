@@ -15,6 +15,12 @@ public class UIHealthBar : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        foregroundImage.fillAmount = 1;
+        foregroundImage.enabled = true;
+    }
+
     private void Player_OnCharacterChanged(Character character)
     {
         currentCharacter = character;

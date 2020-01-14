@@ -82,6 +82,7 @@ public class Character : MonoBehaviour, ITakeDamage
         if(currentHealth <= 0)
         {
             Die();
+            return;
         }
     }
 
