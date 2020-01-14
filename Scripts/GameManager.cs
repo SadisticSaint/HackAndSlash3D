@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    public AsyncOperation Operation { get; private set; }
+
     private void Awake()
     {
         Instance = this;
@@ -19,8 +21,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BeginGame()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-        while (operation.isDone == false)
+        Operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        while (Operation.isDone == false)
             yield return null;
 
         PlayerManager.Instance.SpawnPlayerCharacters();

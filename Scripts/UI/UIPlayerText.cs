@@ -16,6 +16,9 @@ public class UIPlayerText : MonoBehaviour
         //*anchor player joined text
         tmText.text = "Player Joined";
         StartCoroutine(ClearTextAfterDelay());
+
+        if (GameManager.Instance.Operation.isDone == true)
+            tmText.text = string.Empty;
     }
 
     private IEnumerator ClearTextAfterDelay()

@@ -20,6 +20,7 @@ public class Character : MonoBehaviour, ITakeDamage
     private int currentHealth;
 
     public event Action<int, int> OnHealthChanged = delegate { };
+    public event Action<Character> OnDied = delegate { };
 
     public int Damage { get { return damage; } }
 
@@ -77,5 +78,15 @@ public class Character : MonoBehaviour, ITakeDamage
     {
         currentHealth -= hitBy.Damage; //characters shouldn't be able to damage each other
         OnHealthChanged(currentHealth, maxHealth);
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        OnDied(this);
     }
 }
