@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4447167002536631420}
   - component: {fileID: 7717341306315644585}
   - component: {fileID: -3878953044987990167}
+  - component: {fileID: 5090483567279927622}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -63,6 +64,20 @@ MonoBehaviour:
   damage: 1
   attackOffset: 1
   attackRadius: 1
+--- !u!114 &5090483567279927622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169236875527901692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa40146cf0c54c48a25077ff96293ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticlePrefab: {fileID: 11400004, guid: 7867af58a6ec48846ae807eb4022fbaa,
+    type: 3}
 --- !u!1001 &7004738594700994432
 PrefabInstance:
   m_ObjectHideFlags: 0
